@@ -3,19 +3,14 @@ import PlaidLink from "react-plaid-link";
 import axios from "axios";
 
 class Link extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      transactions: []
-    };
-
-    this.handleClick = this.handleClick.bind(this);
-  }
+  
+  state = {
+    transactions: []
+  };
 
   handleOnSuccess(public_token, metadata) {
     // send token to client server
-    axios.post("/auth/public_token", {
+    axios.post("http://localhost:8000/core/link-bank-account/", {
       public_token: public_token
     });
   }
@@ -26,7 +21,7 @@ class Link extends Component {
   }
 
   handleClick(res) {
-    axios.get("/transactions").then(res => {
+    axios.get("http://localhost:8000/transactions").then(res => {
       this.setState({ transactions: res.data });
     });
   }
