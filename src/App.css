@@ -10,3 +10,6 @@
   text-align: center;
   flex-direction: column;
 }
+.test {
+  border: none;
+}

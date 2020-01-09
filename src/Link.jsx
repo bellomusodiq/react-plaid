@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PlaidLink from "react-plaid-link";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 class Link extends Component {
-  
+
   state = {
     transactions: []
   };
@@ -29,19 +30,24 @@ class Link extends Component {
   render() {
     return (
       <div>
-        <PlaidLink
-          clientName="Bello Inc"
-          env="sandbox"
-          product={["auth", "transactions"]}
-          publicKey="3707dc7847c12157f8b7694fc6bbfa"
-          onExit={this.handleOnExit}
-          onSuccess={this.handleOnSuccess}
-          className="test"
-        >
-          Open Link and connect your bank!
+        <h4>Hey {this.props.username}</h4>
+        {!localStorage.getItem("token") ? <Redirect to='/login' /> : null}
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+
+          <PlaidLink
+            clientName="Bello Inc"
+            env="sandbox"
+            product={["auth", "transactions"]}
+            publicKey="3707dc7847c12157f8b7694fc6bbfa"
+            onExit={this.handleOnExit}
+            onSuccess={this.handleOnSuccess}
+            className="test"
+          >
+            Link your bank account
         </PlaidLink>
+        {/* <button style={{marginTop: 10}} onClick={this.handleClick}>Get Transactions</button> */}
+        </div>
         <div>
-          <button onClick={this.handleClick}>Get Transactions</button>
         </div>
       </div>
     );

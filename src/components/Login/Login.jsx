@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
 import './Login.css';
+import axios from 'axios';
+import { Redirect, withRouter } from 'react-router-dom';
 
 
 class Login extends Component {
     state = {
         username: '',
         password: '',
-    }
-    login = e => {
-        e.preventDefault();
-        const data = {
-            user_name: this.state.username,
-            password: this.state.password
-        }
-        // send to backend then save to local storage
+        loading: false
     }
     render() {
         return(
             <div className="Login">
+                {this.props.username?<Redirect to="/" />:null}
                 <h4>LOGIN</h4>
-                <form className="LoginForm" onSubmit={this.login} >
+                <form className="LoginForm" onSubmit={(e) => this.props.handleLogin(e, this.state.username, this.state.password)} >
                     <div className="FormInput">
                         <p>Username</p>
                         <input required type="text" onChange={e => this.setState({username: e.target.value})}
@@ -39,4 +35,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);

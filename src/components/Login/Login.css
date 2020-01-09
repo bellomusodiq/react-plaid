@@ -19,7 +19,7 @@
     border: 1px solid lightgray;
     font-size: 1em;
 }
-button {
+.test, button {
     outline: none;
     cursor: pointer;
     padding: 5px 15px;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
 
 
 class Signup extends Component {
@@ -6,6 +7,7 @@ class Signup extends Component {
     render() {
         return(
             <div className="Login">
+                {localStorage.getItem('token')?<Redirect to="/" />:null}
                 <h4>SIGNUP</h4>
                 <form className="LoginForm">
                     <div className="FormInput">
