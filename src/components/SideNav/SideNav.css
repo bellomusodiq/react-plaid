@@ -1,0 +1,61 @@
+.SideNav {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    box-shadow: 1px 3px 4px lightgray;
+}
+.SideNav > * {
+    padding-left: 10px;
+}
+.SideNavItem {
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  .SideNavItem:hover {
+    background-color: #f11010;
+    color: #fff;
+    opacity: 0.8;
+  }
+  .SideNavActive {
+    background-color: red;
+    color: #fff;
+  }
+  @media screen and (max-width: 500px) {
+      .SideNav {
+          transition: .4s ease all;
+          transform: translateX(-100vw);
+      }
+      .Main {
+          width: 100%;
+          margin: 0;
+      }
+      div.Login {
+          width: 90%;
+      }
+      .SideNav {
+          z-index: 3;
+          width: 80%;
+          background-color: #fff;
+      }
+      .Backdrop {
+          display: none;
+          position: fixed;
+          left: 0;
+          top: 0;
+          width: 100vw;
+          height: 100vh;
+          background-color: rgba(0, 0, 0, 0.75);
+          z-index: 2;
+        }
+        .ShowBackdrop {
+            display: block;
+        }
+        .ShowSideNav {
+            transform: translateX(0);
+        }
+  }

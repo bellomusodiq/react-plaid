@@ -1,0 +1,31 @@
+.Header {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 1px 1px 3px lightgray;
+    margin-bottom: 20px;
+}
+.MenuBtn {
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    box-sizing: border-box;
+    height: 60%;
+    margin-left: 5px;
+}
+.MenuBtn > div {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+.Logo {
+    flex: 1;
+}
+@media screen and (min-width: 500px) {
+    .MenuBtn {
+        display: none;
+    }
+}
