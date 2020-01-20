@@ -1,0 +1,16 @@
+.Notification {
+    margin-left: 15vw;
+    width: 70vw;
+    position: fixed;
+    top: 50px;
+    z-index: 300;
+    background-color: black;
+    opacity: .6;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: all ease .4s;
+}

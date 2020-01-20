@@ -1,0 +1,29 @@
+.LookupHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px 20px;
+    box-sizing: border-box;
+}
+.LookupHeader > input {
+    width: 70%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #111111;
+    outline: none;
+}
+.LookupHeader > input:focus {
+    border-color: tomato;
+}
+.CategoryMonth {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 90%;
+    margin: auto;
+}
+.CategoryMonth > div {
+    margin-right: 10px;
+}

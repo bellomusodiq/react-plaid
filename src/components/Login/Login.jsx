@@ -16,6 +16,7 @@ class Login extends Component {
                 {this.props.username?<Redirect to="/" />:null}
                 <h4>LOGIN</h4>
                 <form className="LoginForm" onSubmit={(e) => this.props.handleLogin(e, this.state.username, this.state.password)} >
+                    {this.props.error?<p style={{color: 'tomato'}}>Invalid username and or password</p>:null}
                     <div className="FormInput">
                         <p>Username</p>
                         <input required type="text" onChange={e => this.setState({username: e.target.value})}

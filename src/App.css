@@ -13,3 +13,12 @@
 .test {
   border: none;
 }
+.ExploreHeading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  text-align: start;
+  width: 100%;
+  margin-bottom: 20px;
+}
