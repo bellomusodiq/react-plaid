@@ -1,7 +1,7 @@
 .Notification {
-    margin-left: 15vw;
     width: 70vw;
     position: fixed;
+    left: 15vw;
     top: 50px;
     z-index: 300;
     background-color: black;
@@ -13,4 +13,10 @@
     box-sizing: border-box;
     border-radius: 5px;
     transition: all ease .4s;
+}
+@media screen and (max-width: 500px) {
+    .Notification {
+        width: 90vw;
+        left: 5vw;
+    }
 }

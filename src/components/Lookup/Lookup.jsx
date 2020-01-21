@@ -34,8 +34,14 @@ class Lookup extends Component {
         const headers = {
             Authorization: 'JWT ' + localStorage.getItem('token')
         }
-        let url = "http://localhost:8000/core/stores-visited/?username=" + this.state.userQuery;
-        if (category) {
+        let url = "http://localhost:8000/core/stores-visited/?all=true";
+        if (this.state.userQuery !== '') {
+            url = "http://localhost:8000/core/stores-visited/?username=" + this.state.userQuery;
+        } 
+        if (this.state.currentCategory !== '') {
+            url = "http://localhost:8000/core/stores-visited/?category=" + category;
+        }
+        if ((this.state.currentCategory !== '') && (this.state.userQuery !== '')) {
             url = "http://localhost:8000/core/stores-visited/?username=" + this.state.userQuery + "&category=" + category;
         }
         axios.get(url, { headers: headers })
@@ -69,7 +75,7 @@ class Lookup extends Component {
                 <option key={i} value={cat.id}>{cat.title}</option>
             ))
         }
-        
+
         return (
             <div className="Lookup">
                 <Loader show={this.state.loading} />
@@ -84,13 +90,13 @@ class Lookup extends Component {
                 <div className="CategoryMonth">
                     <div>
                         <span>{this.state.userQuery !== '' ? this.state.userQuery : 'All'} Favorite</span>
-                        <select style={{marginLeft: 5}} onChange={e => this.setState({ currentCategory: e.target.value })}
+                        <select style={{ marginLeft: 5 }} onChange={e => this.setState({ currentCategory: e.target.value })}
                             value={this.state.currentCategory}>
                             <option value="">All Category</option>
                             {categories}
                         </select>
                     </div>
-                    
+
                 </div>
                 <Merchant result={this.state.merchants} />
             </div>
