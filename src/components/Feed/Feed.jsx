@@ -28,15 +28,15 @@ class Feed extends Component {
             })
         this.searchTransaction()
     }
-    searchTransaction = (_=null, url = null) => {
+    searchTransaction = (_ = null, url = null) => {
         this.setState({ loading: true, error: false, showNotification: false, notificationMessage: '' })
         const headers = {
             Authorization: 'JWT ' + localStorage.getItem("token")
         }
         let reqUrl = "http://localhost:8000/core/transactions/?month=this month";
         if (this.state.currentCategory !== "") {
-            reqUrl = "http://localhost:8000/core/transactions/?month="+this.state.month+"&category="+this.state.currentCategory;
-        } 
+            reqUrl = "http://localhost:8000/core/transactions/?month=" + this.state.month + "&category=" + this.state.currentCategory;
+        }
         if (url) {
             reqUrl = url;
         }
@@ -77,6 +77,9 @@ class Feed extends Component {
                         </span>
                         <span style={{ width: '300px' }} className="">
                             {categories}
+                        </span>
+                        <span style={{ width: '300px' }} className="">
+                            {transaction.time_since}
                         </span>
                     </div>
                 )
@@ -119,21 +122,26 @@ class Feed extends Component {
                         </select>
                     </div>
                 </div>
-                <div style={{ paddingLeft: 10 }} className="MerchantResult">
-                    <div className="MerchantHeader">
-                        <span style={{ width: '200px' }} className="">
-                            Username
+                <div style={{boxSizing: 'border-box', width: '100%'}}>
+                    <div style={{ paddingLeft: 10 }} className="MerchantResult">
+                        <div className="MerchantHeader">
+                            <span style={{ width: '200px' }} className="">
+                                Username
                         </span>
-                        <span style={{ width: '500px' }} className="">
-                            Merchant Name
+                            <span style={{ width: '500px' }} className="">
+                                Merchant Name
                         </span>
-                        <span style={{ width: '300px' }} className="">
-                            Category(ies)
+                            <span style={{ width: '300px' }} className="">
+                                Category(ies)
                         </span>
+                            <span style={{ width: '300px' }} className="">
+                                Time
+                        </span>
+                        </div>
+                        <hr />
+                        {transactions}
                     </div>
                 </div>
-                <hr />
-                {transactions}
                 <div className="PreviousNext">
                     {this.state.transactions ?
                         <Fragment>

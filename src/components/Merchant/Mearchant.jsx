@@ -16,6 +16,7 @@ const Merchant = props => {
     }
     return (
         <div className="MerchantResult">
+            <h3 style={{textAlign: 'center'}} >{props.title}</h3>
             <div className="MerchantHeader">
                 <span style={{ width: '100px' }} >Rank</span>
                 <span style={{ width: '500px' }}>Merchant</span>

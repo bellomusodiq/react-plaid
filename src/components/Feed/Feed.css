@@ -1,8 +1,20 @@
+.App {
+    width: 100%;
+    box-sizing: border-box;
+}
+.Feed {
+    /* width: 100%; */
+    box-sizing: border-box;
+}
+/* .MerchantResult {
+    width: 100%;
+    box-sizing: border-box;
+} */
 .Table {
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* box-sizing: fit-content; */
+    box-sizing: border-box;
     padding: 10px;
     overflow-x: auto;
     margin-right: 10px;

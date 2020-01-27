@@ -16,11 +16,13 @@ class Link extends Component {
       transactions: [],
       transactionCategories: null,
       merchants: null,
+      myMerchants: null,
       currentCategory: '',
       loading: false,
       error: false,
       showNotification: false,
-      notificationMessage: ''
+      notificationMessage: '',
+      linking: false
     }
   };
   handleSetState = (prop) => {
@@ -31,7 +33,7 @@ class Link extends Component {
       Authorization: 'JWT ' + localStorage.getItem('token')
     }
     // send token to client server
-    this.setState({ loading: true, error: false })
+    this.setState({ loading: true, error: false, linking: true })
     axios.post("http://localhost:8000/core/link-bank-account/", {
       public_token: public_token
     }, { headers: headers })
@@ -39,7 +41,8 @@ class Link extends Component {
         this.setState({
           loading: false, error: false,
           showNotification: true,
-          notificationMessage: 'Bank account linked successful'
+          notificationMessage: 'Bank account linked successful',
+          linking: false
         })
         setTimeout(() => {
           this.setState({ showNotification: false, notificationMessage: '' })
@@ -49,7 +52,8 @@ class Link extends Component {
         this.setState({
           loading: false, error: true,
           showNotification: true,
-          notificationMessage: 'An error occured'
+          notificationMessage: 'An error occured',
+          linking: false
         })
         setTimeout(() => {
           this.setState({ showNotification: false, notificationMessage: '' })
@@ -117,6 +121,20 @@ class Link extends Component {
         }, 5000);
       }
       )
+    axios.get('http://localhost:8000/core/stores-visited/?username=' + this.props.username, { headers: headers })
+      .then(res => {
+        this.setState({ myMerchants: res.data, loading: false, error: true })
+      })
+      .catch(err => {
+        this.setState({
+          loading: false, error: true, showNotification: true,
+          notificationMessage: 'an error occured'
+        })
+        setTimeout(() => {
+          this.setState({ showNotification: false, notificationMessage: '' })
+        }, 5000);
+      }
+      )
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevState.currentCategory !== this.state.currentCategory) {
@@ -134,6 +152,22 @@ class Link extends Component {
         <option key={i} value={cat.id}>{cat.title}</option>
       ))
     }
+    let plaidLinkBtn = null;
+    if ((this.state.myMerchants !== null) && (this.state.myMerchants.length === 0)) {
+      plaidLinkBtn = (
+        <PlaidLink
+              clientName="Bello Inc"
+              env="sandbox"
+              product={["auth", "transactions"]}
+              publicKey="3707dc7847c12157f8b7694fc6bbfa"
+              onExit={this.handleOnExit}
+              onSuccess={this.handleOnSuccess}
+              className="test"
+            >
+              Link your bank account
+        </PlaidLink>
+      )
+    }
     return (
       <div>
         <h4>Hey {this.props.username}</h4>
@@ -141,7 +175,7 @@ class Link extends Component {
         <Notification error={this.state.error}
           message={this.state.notificationMessage}
           show={this.state.showNotification} />
-        <Loader show={this.state.loading} />
+        <Loader show={this.state.loading} link={this.state.linking} />
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div className="ExploreHeading">
             <span style={{ fontWeight: 'bolder' }} >Explore </span>
@@ -151,22 +185,13 @@ class Link extends Component {
               {categories}
             </select>
           </div>
-          <PlaidLink
-            clientName="Bello Inc"
-            env="sandbox"
-            product={["auth", "transactions"]}
-            publicKey="3707dc7847c12157f8b7694fc6bbfa"
-            onExit={this.handleOnExit}
-            onSuccess={this.handleOnSuccess}
-            className="test"
-          >
-            Link your bank account
-        </PlaidLink>
+          {plaidLinkBtn}
           {/* <button style={{marginTop: 10}} onClick={this.handleClick}>Get Transactions</button> */}
         </div>
         <div>
         </div>
-        <Mearchant result={this.state.merchants} />
+        <Mearchant result={this.state.myMerchants} title={'My Top Locations'} />
+        <Mearchant result={this.state.merchants} title={'Total Top Locations'} />
         <p style={{ textAlign: 'center' }} >Top 10 merchants for all users on the platform</p>
       </div>
     );

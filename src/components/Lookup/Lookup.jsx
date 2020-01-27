@@ -4,6 +4,7 @@ import Merchant from '../Merchant/Mearchant';
 import axios from 'axios';
 import Loader from '../Loader/Loader';
 import Notification from '../Notification/Notification';
+import { Redirect } from 'react-router-dom';
 
 
 class Lookup extends Component {
@@ -78,6 +79,7 @@ class Lookup extends Component {
 
         return (
             <div className="Lookup">
+                {!localStorage.getItem('token')?<Redirect to="/login" />:null}
                 <Loader show={this.state.loading} />
                 <Notification show={this.state.showNotification}
                     message={this.state.notificationMessage} error={this.state.error} />
