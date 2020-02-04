@@ -190,7 +190,9 @@ class Link extends Component {
         </div>
         <div>
         </div>
-        <Mearchant result={this.state.myMerchants} title={'My Top Locations'} />
+        {this.state.myMerchants && this.state.myMerchants.length > 0?
+          <Mearchant result={this.state.myMerchants} title={'My Top Locations'} />
+        :null}
         <Mearchant result={this.state.merchants} title={'Total Top Locations'} />
         <p style={{ textAlign: 'center' }} >Top 10 merchants for all users on the platform</p>
       </div>

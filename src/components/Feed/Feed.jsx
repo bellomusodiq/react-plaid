@@ -62,6 +62,7 @@ class Feed extends Component {
     render() {
         let transactions = null;
         if (this.state.transactions) {
+            console.log(this.state.transactions)
             transactions = this.state.transactions.results.map((transaction, index) => {
                 const categories = transaction.cats.map((cat, i) => (
                     <span style={{ marginRight: 5 }} >{cat.title}{i !== (transaction.cats.length - 1) ? ',' : null}</span>
