@@ -80,7 +80,7 @@ class Feed extends Component {
                             {categories}
                         </span>
                         <span style={{ width: '300px' }} className="">
-                            {transaction.time_since} ago
+                            {transaction.time_since} days ago
                         </span>
                     </div>
                 )
@@ -129,13 +129,13 @@ class Feed extends Component {
                             <span style={{ width: '200px' }} className="">
                                 Username
                         </span>
-                            <span style={{ width: '500px' }} className="">
+                            <span style={{ width: '350px' }} className="">
                                 Merchant Name
                         </span>
-                            <span style={{ width: '300px' }} className="">
+                            <span style={{ width: '250px' }} className="">
                                 Category(ies)
                         </span>
-                            <span style={{ width: '300px' }} className="">
+                            <span style={{ width: '250px' }} className="">
                                 Time
                         </span>
                         </div>
