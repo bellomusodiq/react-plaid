@@ -33,7 +33,7 @@ class Feed extends Component {
         const headers = {
             Authorization: 'JWT ' + localStorage.getItem("token")
         }
-        let reqUrl = "http://localhost:8000/core/transactions/?month=this month";
+        let reqUrl = "http://localhost:8000/core/transactions/?month="+this.state.month;
         if (this.state.currentCategory !== "") {
             reqUrl = "http://localhost:8000/core/transactions/?month=" + this.state.month + "&category=" + this.state.currentCategory;
         }
@@ -80,7 +80,7 @@ class Feed extends Component {
                             {categories}
                         </span>
                         <span style={{ width: '300px' }} className="">
-                            {transaction.time_since}
+                            {transaction.time_since} ago
                         </span>
                     </div>
                 )

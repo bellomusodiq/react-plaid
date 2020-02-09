@@ -104,8 +104,10 @@ class Link extends Component {
       Authorization: 'JWT ' + localStorage.getItem('token')
     }
     let url = "http://localhost:8000/core/stores-visited/?all=true";
+    let myUrl = 'http://localhost:8000/core/stores-visited/?username=' + this.props.username;
     if (category) {
       url = "http://localhost:8000/core/stores-visited/?category=" + category;
+      myUrl = 'http://localhost:8000/core/stores-visited/?username=' + this.props.username + '&category=' + category;
     }
     axios.get(url, { headers: headers })
       .then(res => {
@@ -121,7 +123,7 @@ class Link extends Component {
         }, 5000);
       }
       )
-    axios.get('http://localhost:8000/core/stores-visited/?username=' + this.props.username, { headers: headers })
+    axios.get(myUrl, { headers: headers })
       .then(res => {
         this.setState({ myMerchants: res.data, loading: false, error: true })
       })
