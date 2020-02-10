@@ -70,16 +70,16 @@ class Feed extends Component {
                 return (
                     <div key={transaction.transaction_id}
                         className="MerchantBody" style={{ background: index % 2 === 0 ? 'rgb(249, 249, 249)' : 'rgb(201, 239, 253)' }}>
-                        <span style={{ width: '200px' }} className="">
+                        <span style={{ width: '10%' }} className="">
                             {transaction.username}
                         </span>
-                        <span style={{ width: '500px' }} className="">
+                        <span style={{ width: '50%' }} className="">
                             {transaction.store_title}
                         </span>
-                        <span style={{ width: '300px' }} className="">
+                        <span style={{ width: '20%' }} className="">
                             {categories}
                         </span>
-                        <span style={{ width: '300px' }} className="">
+                        <span style={{ width: '20%' }} className="">
                             {transaction.time_since} days ago
                         </span>
                     </div>
@@ -126,16 +126,16 @@ class Feed extends Component {
                 <div style={{boxSizing: 'border-box', width: '100%'}}>
                     <div style={{ paddingLeft: 10 }} className="MerchantResult">
                         <div className="MerchantHeader">
-                            <span style={{ width: '200px' }} className="">
+                            <span style={{ width: '10%' }} className="">
                                 Username
                         </span>
-                            <span style={{ width: '350px' }} className="">
+                            <span style={{ width: '50%' }} className="">
                                 Merchant Name
                         </span>
-                            <span style={{ width: '250px' }} className="">
+                            <span style={{ width: '20%' }} className="">
                                 Category(ies)
                         </span>
-                            <span style={{ width: '250px' }} className="">
+                            <span style={{ width: '20%' }} className="">
                                 Time
                         </span>
                         </div>
