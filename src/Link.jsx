@@ -44,6 +44,7 @@ class Link extends Component {
           notificationMessage: 'Bank account linked successful',
           linking: false
         })
+        this.merchantSearch();
         setTimeout(() => {
           this.setState({ showNotification: false, notificationMessage: '' })
         }, 5000)
